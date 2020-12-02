@@ -1,0 +1,11 @@
+.table{
+    border: 1px solid #3978ff;
+    font-size: 16px;
+}
+li{
+    padding: 10px;
+}
+span{
+    display: inline-block;
+    min-width: 50px;
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>管理后台首页</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+    <h2>学生信息</h2>
+    <ul class='table'>
+        {{each students}}
+        <li>
+            <span>{{$index+1}}</span>
+            <span>{{$value.name}}</span>
+            <span>{{$value.age}}</span>
+            <span>{{$value.gender}}</span>
+            <span>{{$value.motto}}</span>
+            <span>{{$value.motto}}</span>
+            <span><a href="/edit">编辑</a>   </span>
+            <span><a href="/delete">删除</a> </span>
+        </li>
+        {{/each}}
+    </ul>
+</body>
+</html>
