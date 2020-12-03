@@ -1,4 +1,6 @@
 .table{
+    width: 60%;
+    margin: 0 auto;
     border: 1px solid #3978ff;
     font-size: 16px;
 }

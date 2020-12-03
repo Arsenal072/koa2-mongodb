@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bodyParser = require('koa-bodyparser')
 const app = new Koa()
+// let router = require('./router')
 
 app.use(bodyParser())
 
@@ -45,14 +46,10 @@ let studentSchema = new Schema({
 let Student = mongoose.model('Student', studentSchema)
 
 
-
 router.get('/', async (ctx, next) => {
-    console.time()
-    let students = Student.find()
-    console.log('students',students)
-    console.timeEnd()
-    await ctx.render('index', {
-        students
+    let result = await Student.find()
+    ctx.render('index', {
+        students: result
     })
 })
 
@@ -64,6 +61,24 @@ router.post('/doAdd', async (ctx)=>{
     console.log('ctx', ctx.request.body)
     let student = new Student(ctx.request.body)
     await student.save()
+    ctx.redirect('/')
+})
+
+router.get('/edit', async (ctx, next)=>{
+    let result = await Student.findById(ctx.query.id)
+    console.log('result', result)
+    await ctx.render('edit', {
+        student: result
+    })
+})
+
+router.post('/doEdit', async (ctx, next)=>{
+    await Student.findByIdAndUpdate(ctx.request.body.id, ctx.request.body)
+    ctx.redirect('/')
+})
+
+router.get('/delete', async (ctx, next)=>{
+    await Student.findByIdAndRemove(ctx.query.id)
     ctx.redirect('/')
 })
 

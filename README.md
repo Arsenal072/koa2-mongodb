@@ -86,8 +86,7 @@ app.use(async function (ctx) {
 ```
 
 ##### 使用(art-template语法)
-
-http://aui.github.io/art-template/zh-cn/docs/index.html
+官方文档: http://aui.github.io/art-template/zh-cn/docs/index.html
 
 #### 配置静态资源中间件koa-static
 
@@ -115,7 +114,28 @@ app.use(static(
 
 `cnpm install mongodb --save`
 
-##### mongoose使用http://www.mongoosejs.net/
+##### mongoose使用
+官方文档：http://www.mongoosejs.net/
+* 启动数据库
+`mongo`
+* 显示所有数据库
+* 显示当前数据库
+* 创建或切换数据库
+* 显示所有集合
+* 创建集合
+* 查询集合数据
+* 修改数据
+* 添加数据
+```
+db.集合名称.insert(document)
+db.student.insert({name:'zhangsan',gender:1})
+db.student.insert({_id:"20170101",name:'gj',gender:1})
+```
+* 修改数据
+```
+db.集合名称.update(<query> ,<update>,{multi: <boolean>})
+db.student.update({name:'hr'},{name:'mnc'}) 
+```
 
 ###### 安装并引入
 
@@ -135,8 +155,18 @@ mongoose.connect('mongodb://localhost/info');
 
 
 ###### 将文档结构发布为模型
+```
+let Student = mongoose.model('Student', studentSchema)
+```
 
-
+#### CURD
+* 新增
+* 查询
+`model.findById(id)`
+* 更改
+`model.findByIdAndUpdate(id, ctx.request.body)`
+* 删除
+`model.findByIdAndRemove(id)`
 
 
 
