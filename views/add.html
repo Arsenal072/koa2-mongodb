@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>新增</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+    <div class='main-content'>
+        <h2>新增学生信息</h2>
+
+        <form action="doAdd" method="post" id='form'>
+            姓名: <input type="text" class="form-control" name='name'>
+            年龄: <input type="text" class="form-control" name='age'>
+            性别: <input type="text" class="form-control" name='gender'>
+            座右铭: <input type="text" class="form-control" name='motto'>
+            <br>
+            <input type="submit" value="新增">
+        </form>
+    </div>
+
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script>
+        $('#form').submit(function(e){
+            e.stopPropagation()
+            var formData = $(this).serialize()
+            console.log('formData',formData)
+        })
+    </script> -->
+</body>
+
+</html>

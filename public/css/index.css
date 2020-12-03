@@ -9,3 +9,10 @@ span{
     display: inline-block;
     min-width: 50px;
 }
+.main-content{
+    width: 60%;
+    margin: 0 auto;
+}
+.form-control{
+    width: 300px;
+}

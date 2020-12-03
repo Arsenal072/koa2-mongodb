@@ -4,10 +4,13 @@ const render = require('koa-art-template');
 const path = require('path')
 const static = require('koa-static');
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema
-
-
+const Schema = mongoose.Schema;
+const bodyParser = require('koa-bodyparser')
 const app = new Koa()
+
+app.use(bodyParser())
+
+
 /**
  * 配置静态资源中间件
  * 
@@ -26,18 +29,42 @@ render(app, {
 */ 
 mongoose.connect('mongodb://localhost/info');
 let studentSchema = new Schema({
-    
+    name: {
+        type: String
+    },
+    age: {
+        type: Number
+    },
+    gender: {
+        type: String
+    },
+    motto: {
+        type: String
+    }
 })
+let Student = mongoose.model('Student', studentSchema)
+
+
 
 router.get('/', async (ctx, next) => {
+    console.time()
+    let students = Student.find()
+    console.log('students',students)
+    console.timeEnd()
     await ctx.render('index', {
-        students: [{
-            name: '张三',
-            age: 14,
-            gender: '男',
-            motto: '哈看看书的感受到了客观来说的复合管'
-        }]
+        students
     })
+})
+
+router.get('/add', async (ctx)=>{
+    await ctx.render('add')
+})
+
+router.post('/doAdd', async (ctx)=>{
+    console.log('ctx', ctx.request.body)
+    let student = new Student(ctx.request.body)
+    await student.save()
+    ctx.redirect('/')
 })
 
 app.use(router.routes())

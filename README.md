@@ -126,6 +126,20 @@ var Schema = mongoose.Schema
 
 ###### 连接数据库
 
+```js
+mongoose.connect('mongodb://localhost/info');
+```
+
+###### 设计文档结构(表结构)
+
+
+
+###### 将文档结构发布为模型
+
+
+
+
+
 
 
 
