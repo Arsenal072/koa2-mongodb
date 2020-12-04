@@ -24,9 +24,9 @@ https://github.com/demopark/koa-docs-Zh-CN
 中间件类型：
 
 - 应用级中间件
-- 路由级中间件
+- 路由级中间件(koa-router)
 - 错误处理中间件
-- 第三方中间件
+- 第三方中间件 (静态资源中间件koa-static、koa-art-template)
 
 中间件使用三部曲：安装=》引入、配置=》使用
 
@@ -104,7 +104,7 @@ app.use(static(
 ))   
 ```
 
-##### 在使用html中使用
+##### 在使用html模板中使用
 
 `<link rel="stylesheet" href="/css/index.css">`
 
@@ -117,15 +117,55 @@ app.use(static(
 ##### mongoose使用
 官方文档：http://www.mongoosejs.net/
 * 启动数据库
-`mongo`
+  `mongo`
+
 * 显示所有数据库
+
+  `show dbs`
+
 * 显示当前数据库
+
+  `db`
+
 * 创建或切换数据库
+
+  `use 数据库名字`
+
 * 显示所有集合
+
+  `show collections`
+
 * 创建集合
+
+  ```js
+  db.createCollection(name, options)
+  /*
+  参数说明：
+  name: 要创建的集合名称
+  options: 可选参数, 指定有关内存大小及索引的选项
+  */
+  ```
+
 * 查询集合数据
+
+  ```js
+  db.collection.find(query, projection)
+  /*
+  query ：可选，使用查询操作符指定查询条件
+  projection ：可选，使用投影操作符指定返回的键。查询时返回文档中所有键值， 只需省略该参数即可（默认省略）
+  */
+  ```
+
 * 修改数据
+
+  ```js
+  db.student.update()
+  db.student.update({"name":"xiaohong"},{$set:{"age":18}},{multi:true})
+  //如果想要批量修改，则要加上{multi:true}
+  ```
+
 * 添加数据
+
 ```
 db.集合名称.insert(document)
 db.student.insert({name:'zhangsan',gender:1})
@@ -152,7 +192,22 @@ mongoose.connect('mongodb://localhost/info');
 
 ###### 设计文档结构(表结构)
 
-
+```js
+let studentSchema = new Schema({
+    name: {
+        type: String
+    },
+    age: {
+        type: Number
+    },
+    gender: {
+        type: String
+    },
+    motto: {
+        type: String
+    }
+})
+```
 
 ###### 将文档结构发布为模型
 ```
@@ -161,10 +216,18 @@ let Student = mongoose.model('Student', studentSchema)
 
 #### CURD
 * 新增
+
+  ```js
+  let student = new Student(ctx.request.body)
+  await student.save()
+  ```
+
 * 查询
-`model.findById(id)`
+  `model.findById(id)`
+
 * 更改
-`model.findByIdAndUpdate(id, ctx.request.body)`
+  `model.findByIdAndUpdate(id, ctx.request.body)`
+
 * 删除
 `model.findByIdAndRemove(id)`
 

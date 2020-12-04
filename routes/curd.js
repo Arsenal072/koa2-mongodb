@@ -1,6 +1,6 @@
 
 const router = require('koa-router')()
-const bodyParser = require('koa-bodyparser')
+let Student = require('../model/curd')
 
 router.get('/', async (ctx, next) => {
     let result = await Student.find()
