@@ -10,25 +10,28 @@
 </head>
 
 <body>
-    <h2>学生信息</h2>
-    <button><a href="/add">新增学生信息</a></button>
-    <ul class='table'>
-        {{if students.length}}
-        {{each students}}
-        <li>
-            <span>{{$index+1}}</span>
-            <span>{{$value.name}}</span>
-            <span>{{$value.age}}</span>
-            <span>{{$value.gender}}</span>
-            <span>{{$value.motto}}</span>
-            <span><a href="/edit?id={{$value.id}}">编辑</a> </span>
-            <span><a href="/delete?id={{$value.id}}">删除</a> </span>
-        </li>
-        {{/each}}
-        {{else}}
-        <span>暂无数据</span>
-        {{/if}}
-    </ul>
+    <section>    
+        <h2>学生信息</h2>
+        <button><a href="/add">新增学生信息</a></button>
+        <ul class='table'>
+            {{if students.length}}
+            {{each students}}
+            <li>
+                <span>{{$index+1}}</span>
+                <span>{{$value.name}}</span>
+                <span>{{$value.age}}</span>
+                <span>{{$value.gender}}</span>
+                <span>{{$value.motto}}</span>
+                <span><a href="/edit?id={{$value.id}}">编辑</a> </span>
+                <span><a href="/delete?id={{$value.id}}">删除</a> </span>
+            </li>
+            {{/each}}
+            {{else}}
+            <span>暂无数据</span>
+            {{/if}}
+        </ul>
+    </section>
+
 </body>
 
 </html>

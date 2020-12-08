@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>管理后台首页</title>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+    <header>
+        {{if user}}
+        <span>{{user.userName}}</span>
+        <button><a href="/logout">退出</a></button>
+        {{else}}
+        <button><a href="/login">登录</a></button>
+        <button><a href="/register">注册</a></button>
+        {{/if}}
+    </header>
+    <button type="button" class="btn btn-default"><a href="/list">查看学生列表</a></button>
+
+</body>
+
+</html>
