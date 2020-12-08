@@ -14,16 +14,14 @@
 
 <body>
     <div class='main-content'>
-        {{ if user}}
-        <p>用户名</p>
-        <a href="/list">查看学生信息</a>
-        {{else}}
-            <a href="/login">登录</a>
-            <a href="/register">注册</a>
-            <div>
-                hello world!
-            </div>
-        {{/if}}
+        <h2>注册</h2>
+
+        <form action="doRegister" method="post" id='form'>
+            姓名: <input type="text" class="form-control" name='name'>
+            密码: <input type="text" class="form-control" name='age'>
+            <br>
+            <input type="submit" value="新增">
+        </form>
     </div>
 </body>
 

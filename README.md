@@ -231,6 +231,44 @@ let Student = mongoose.model('Student', studentSchema)
 * 删除
 `model.findByIdAndRemove(id)`
 
+#### 路由模块化
+```
+//routes/index.js
+const router = require('koa-router')()
+const controller = require('../controller/index')
+
+router.get('/', controller.curd.index)
+router.get('/add', controller.curd.add)
+router.post('/doAdd', controller.curd.doAdd)
+router.post('/doEdit', controller.curd.doEdit)
+router.get('/edit', controller.curd.edit)
+router.get('/delete', controller.curd.delete)
+
+module.exports = router
+```
+```
+//controller/index.js
+const curd = require('./curd')
+module.exports = {
+    curd
+}
+//controller/curd.js
+let Student = require('../model/curd')
+module.exports = {
+    async index(ctx, next) {
+        let result = await Student.find()
+        ctx.render('index', {
+            students: result
+        })
+    },
+    async add (ctx) {
+        await ctx.render('add')
+    }
+}
+```
+#### 鉴权
+
+
 
 
 

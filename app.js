@@ -3,9 +3,7 @@ const render = require('koa-art-template');
 const path = require('path')
 const static = require('koa-static');
 const bodyParser = require('koa-bodyparser')
-const session = require('koa-session');
-
-let curd = require('./routes/curd')
+let index = require('./routes/index')
 
 const app = new Koa()
 
@@ -39,8 +37,8 @@ render(app, {
     debug: process.env.NODE_ENV !== 'production'
 });
 
-app.use(curd.routes())
-app.use(curd.allowedMethods())
+app.use(index.routes())
+app.use(index.allowedMethods())
 
 
 app.listen('3000', () => {
