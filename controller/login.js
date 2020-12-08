@@ -1,5 +1,5 @@
 module.exports = {
-    // -------------------------------------------
+
     async login(ctx, next) {
         await ctx.render('login')
     },

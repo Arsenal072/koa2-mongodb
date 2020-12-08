@@ -1,5 +1,5 @@
 # koa2-mongodb
-使用koa2+mongodb+mongoose技术，实现CURD、登录
+使用koa2+mongodb+mongoose技术，实现CURD、session-cookie登录鉴权
 
 ### 使用技术
 
@@ -266,7 +266,50 @@ module.exports = {
     }
 }
 ```
-#### 鉴权
+#### session-cookie鉴权
+使用koa-session
+* 安装
+`npm install koa-session`
+* 引入并配置
+```
+const Koa = require('koa')
+const session = require('koa-session');
+const app = new Koa()
+
+app.keys = ['some secret hurr'];
+
+const CONFIG = {
+   key: 'koa:sess',   //cookie key (default is koa:sess)
+   maxAge: 86400000,  // cookie的过期时间 maxAge in ms (default is 1 days)
+   overwrite: true,  //是否可以overwrite    (默认default true)
+   httpOnly: true, //cookie是否只有服务器端可以访问 httpOnly or not (default true)
+   signed: true,   //签名默认true
+   rolling: false,  //在每次请求时强行设置cookie，这将重置cookie过期时间（默认：false）
+   renew: false,  //(boolean) renew session when session is nearly expired,
+};
+app.use(session(CONFIG, app));
+```
+```
+    async dologin(ctx, next) {
+        if (ctx.session.user) {
+            //已登录
+            await ctx.render('home', {
+                user: ctx.request.body
+            })
+        } else {
+            ctx.session.user = ctx.request.body
+            await ctx.render('home', {
+                user: ctx.request.body
+            })
+        }
+    },
+
+    async logout(ctx, next) {
+        delete ctx.session.user
+        await ctx.render('home')
+    }
+```
+
 
 
 
