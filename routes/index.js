@@ -12,5 +12,6 @@ router.get('/delete', controller.curd.delete)
 // 登录注册
 router.get('/login', controller.login.login)
 router.post('/dologin', controller.login.dologin)
+router.get('/logout', controller.login.logout)
 
 module.exports = router

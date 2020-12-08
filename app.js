@@ -3,6 +3,7 @@ const render = require('koa-art-template');
 const path = require('path')
 const static = require('koa-static');
 const bodyParser = require('koa-bodyparser')
+const session = require('koa-session');
 let index = require('./routes/index')
 
 const app = new Koa()
